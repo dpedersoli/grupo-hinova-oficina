@@ -12,14 +12,19 @@ export const theme = {
     gray: {
       100: "#F2F2F2",
       200: "#7F7F7F",
-      300: "#242424",
+      300: "#29292E",
+      400: "#242424",
     },
+
+    opaque: "rgba(0, 180, 220, 0.5)",
 
     white: "#FFFFFF",
 
     black: "#000000",
 
     red: "#F75A68",
+
+    yellow: "#FECE00",
   },
   fonts: {
     heading: "Roboto_700Bold",
