@@ -11,9 +11,9 @@ export function AppRoutes() {
     <Navigator screenOptions={{ headerShown: false }}>
       <Screen name="home" component={Home} />
 
-      <Screen name="auto_workshops" component={AutoWorkshops} />
+      <Screen name="workshops" component={AutoWorkshops} />
 
-      <Screen name="refer_a_friend" component={ReferAFriend} />
+      <Screen name="refer" component={ReferAFriend} />
     </Navigator>
   );
 }
