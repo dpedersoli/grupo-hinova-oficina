@@ -25,7 +25,7 @@ export function AutoWorkshops() {
       setIsLoading(true);
 
       const response = await api.get(
-        `/api/oficina?codigoAssociacao=${CODIGO_ASSOCIACAO}&cpfAssociado=`
+        `/Api/Oficina?codigoAssociacao=${CODIGO_ASSOCIACAO}&cpfAssociado=`
       );
 
       setWorkshops(response.data.ListaOficinas);
