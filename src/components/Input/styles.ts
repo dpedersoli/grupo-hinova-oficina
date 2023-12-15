@@ -32,6 +32,10 @@ export const styles = StyleSheet.create({
   },
 
   errorMessage: {
+    fontSize: 12,
     color: theme.colors.red,
+    textAlign: "center",
+    marginHorizontal: 10,
+    marginBottom: 2,
   },
 });
