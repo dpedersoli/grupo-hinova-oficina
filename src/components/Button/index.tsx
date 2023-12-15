@@ -1,12 +1,24 @@
-import { Text, TouchableOpacity, TouchableOpacityProps } from "react-native";
+import {
+  ActivityIndicator,
+  Text,
+  TouchableOpacity,
+  TouchableOpacityProps,
+} from "react-native";
+import { theme } from "../../global/styles/theme";
 import { styles } from "./styles";
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
   disabled?: boolean;
+  isLoading?: boolean;
 }
 
-export function Button({ title, disabled = false, ...rest }: ButtonProps) {
+export function Button({
+  title,
+  disabled = false,
+  isLoading = false,
+  ...rest
+}: ButtonProps) {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
@@ -14,7 +26,11 @@ export function Button({ title, disabled = false, ...rest }: ButtonProps) {
       disabled={disabled}
       {...rest}
     >
-      <Text style={styles.text}>{title}</Text>
+      {isLoading ? (
+        <ActivityIndicator color={theme.colors.blue[100]} />
+      ) : (
+        <Text style={styles.text}>{title}</Text>
+      )}
     </TouchableOpacity>
   );
 }
