@@ -5,11 +5,24 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: theme.colors.gray[300],
+    backgroundColor: theme.colors.gray[400],
+  },
+
+  subContainer: {
+    height: "80%",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+
+  workhopsList: {
+    width: "95%",
+    height: "88%",
+    marginTop: 20,
   },
 
   text: {
-    color: theme.colors.white,
+    color: theme.colors.red,
+    alignSelf: "center",
   },
 });

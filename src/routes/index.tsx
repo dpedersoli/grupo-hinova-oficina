@@ -5,13 +5,13 @@ import { AppRoutes } from "./app.routes";
 
 export function Routes() {
   const appTheme = DefaultTheme;
-  appTheme.colors.background = theme.colors.gray[300];
+  appTheme.colors.background = theme.colors.gray[400];
 
   return (
     <View
       style={{
         flex: 1,
-        backgroundColor: theme.colors.gray[300],
+        backgroundColor: theme.colors.gray[400],
       }}
     >
       <NavigationContainer theme={appTheme}>
