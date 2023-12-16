@@ -12,10 +12,6 @@ export const styles = StyleSheet.create({
     borderRadius: 3,
   },
 
-  disabled: {
-    backgroundColor: theme.colors.opaque,
-  },
-
   text: {
     color: theme.colors.gray[400],
     fontWeight: "bold",
