@@ -6,6 +6,7 @@ import { Header } from "../../components/Header";
 import { Table } from "../../components/Table";
 import { theme } from "../../global/styles/theme";
 import { Workshops } from "../../interfaces/workshop.interface";
+import { AppNavigatorRoutesProps } from "../../routes/app.routes";
 import { api } from "../../services/api";
 import { styles } from "./styles";
 
@@ -14,7 +15,7 @@ export function AutoWorkshops() {
   const [workshops, setWorkshops] = useState<Workshops[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<AppNavigatorRoutesProps>();
 
   function handleGoToReferAFriend() {
     navigation.navigate("refer");

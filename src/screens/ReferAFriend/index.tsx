@@ -9,6 +9,7 @@ import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
 import { StatusModal } from "../../components/SurveyConfirmationModal";
 import { ReferralFormDataProps } from "../../interfaces/referral.interface";
+import { AppNavigatorRoutesProps } from "../../routes/app.routes";
 import { api } from "../../services/api";
 import { styles } from "./styles";
 
@@ -17,12 +18,15 @@ const referAFriendSchema = yup.object({
   CodigoAssociacao: yup
     .string()
     .trim()
-    .required("Informe o código da associação. Apenas números."),
+    .matches(/^[0-9]+$/, "Informe apenas números")
+    .min(3, "O código precisa ter pelo menos 3 dígitos.")
+    .required("Informe o código da associação."),
   CpfAssociado: yup
     .string()
     .trim()
-    .required("Informe o CPF.")
-    .min(11, "O CPF deve ter pelo menos 10 números. Apenas números."),
+    .matches(/^[0-9]+$/, "Informe apenas números")
+    .min(11, "O CPF deve ter pelo menos 11 números. Apenas números.")
+    .required("Informe o CPF."),
   EmailAssociado: yup
     .string()
     .trim()
@@ -31,8 +35,9 @@ const referAFriendSchema = yup.object({
   TelefoneAssociado: yup
     .string()
     .trim()
-    .required("Informe o telefone do associado")
-    .min(10, "O telefone deve ter pelo menos 10 números. Apenas números."),
+    .matches(/^[0-9]+$/, "Informe apenas números")
+    .min(10, "O telefone deve ter pelo menos 10 números. Apenas números.")
+    .required("Informe o telefone do associado"),
   PlacaVeiculoAssociado: yup
     .string()
     .trim()
@@ -41,8 +46,9 @@ const referAFriendSchema = yup.object({
   TelefoneAmigo: yup
     .string()
     .trim()
-    .required("Informe o telefone do amigo indicado.")
-    .min(10, "O telefone deve ter pelo menos 10 números. Apenas números."),
+    .matches(/^[0-9]+$/, "Informe apenas números")
+    .min(10, "O telefone deve ter pelo menos 10 números. Apenas números.")
+    .required("Informe o telefone do amigo indicado."),
   EmailAmigo: yup
     .string()
     .trim()
@@ -56,7 +62,12 @@ export function ReferAFriend() {
   const [isSuccess, setIsSuccess] = useState(true);
   const [failedText, setFailedText] = useState<string>();
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<AppNavigatorRoutesProps>();
+
+  const brazilCurrentDate = new Date().toLocaleString("pt-BR", {
+    timeZone: "America/Sao_Paulo",
+    hour12: false,
+  });
 
   const {
     control,
@@ -77,7 +88,7 @@ export function ReferAFriend() {
     EmailAssociado,
     TelefoneAssociado,
     PlacaVeiculoAssociado,
-    DataCriacao,
+    DataCriacao = brazilCurrentDate,
     NomeAmigo,
     TelefoneAmigo,
     EmailAmigo,
@@ -100,6 +111,10 @@ export function ReferAFriend() {
         },
         Remetente: EmailAssociado,
       });
+
+      console.log("response.config.data: ", response.config.data);
+      console.log("response.data: ", response.data);
+      console.log("response.status: ", response.status);
 
       if (response.data.Sucesso !== null) {
         setIsSuccess(true);
@@ -157,8 +172,8 @@ export function ReferAFriend() {
                   onChangeText={onChange}
                   value={value}
                   customStyle={styles.smallInput}
-                  errorMessage={errors.CodigoAssociacao?.message}
                   keyboardType="numeric"
+                  errorMessage={errors.CodigoAssociacao?.message}
                 />
               )}
             />
@@ -199,8 +214,8 @@ export function ReferAFriend() {
                   placeholder="Telefone do Associado"
                   onChangeText={onChange}
                   value={value}
-                  keyboardType="numeric"
                   customStyle={styles.smallInput}
+                  keyboardType="numeric"
                   errorMessage={errors.TelefoneAssociado?.message}
                 />
               )}
@@ -238,8 +253,8 @@ export function ReferAFriend() {
               <Input
                 placeholder="Telefone do Amigo do Associado"
                 onChangeText={onChange}
-                keyboardType="numeric"
                 value={value}
+                keyboardType="numeric"
                 errorMessage={errors.TelefoneAmigo?.message}
               />
             )}
