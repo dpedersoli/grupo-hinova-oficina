@@ -2,7 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import * as yup from "yup";
 import { Button } from "../../components/Button";
 import { Header } from "../../components/Header";
@@ -131,7 +131,10 @@ export function ReferAFriend() {
     <>
       <View style={styles.container}>
         <Header title="Indique um Amigo" />
-        <View style={styles.formContainer}>
+        <ScrollView
+          style={styles.formContainer}
+          contentContainerStyle={styles.formContainerAlignment}
+        >
           <Controller
             control={control}
             name="NomeAssociado"
@@ -253,15 +256,14 @@ export function ReferAFriend() {
               />
             )}
           />
-        </View>
-
-        <View style={styles.buttonContainer}>
-          <Button
-            title="Enviar Indicação"
-            onPress={handleSubmit(handleFriendReferral)}
-            isLoading={isLoading}
-          />
-        </View>
+          <View style={styles.buttonContainer}>
+            <Button
+              title="Enviar Indicação"
+              onPress={handleSubmit(handleFriendReferral)}
+              isLoading={isLoading}
+            />
+          </View>
+        </ScrollView>
       </View>
       <StatusModal
         visible={showModal}
