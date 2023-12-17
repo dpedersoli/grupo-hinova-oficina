@@ -17,13 +17,11 @@ const referAFriendSchema = yup.object({
   NomeAssociado: yup.string().trim().required("Informe o nome do associado."),
   CodigoAssociacao: yup
     .string()
-    .trim()
     .matches(/^[0-9]+$/, "Informe apenas números")
     .min(3, "O código precisa ter pelo menos 3 dígitos.")
     .required("Informe o código da associação."),
   CpfAssociado: yup
     .string()
-    .trim()
     .matches(/^[0-9]+$/, "Informe apenas números")
     .min(11, "O CPF deve ter pelo menos 11 números. Apenas números.")
     .required("Informe o CPF."),
@@ -34,7 +32,6 @@ const referAFriendSchema = yup.object({
     .email("E-mail inválido."),
   TelefoneAssociado: yup
     .string()
-    .trim()
     .matches(/^[0-9]+$/, "Informe apenas números")
     .min(10, "O telefone deve ter pelo menos 10 números. Apenas números.")
     .required("Informe o telefone do associado"),
@@ -45,7 +42,6 @@ const referAFriendSchema = yup.object({
   NomeAmigo: yup.string().required("Informe o nome do amigo indicado."),
   TelefoneAmigo: yup
     .string()
-    .trim()
     .matches(/^[0-9]+$/, "Informe apenas números")
     .min(10, "O telefone deve ter pelo menos 10 números. Apenas números.")
     .required("Informe o telefone do amigo indicado."),
@@ -65,7 +61,6 @@ export function ReferAFriend() {
   const navigation = useNavigation<AppNavigatorRoutesProps>();
 
   const brazilCurrentDate = new Date().toLocaleString("pt-BR", {
-    timeZone: "America/Sao_Paulo",
     hour12: false,
   });
 
