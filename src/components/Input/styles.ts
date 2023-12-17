@@ -7,6 +7,13 @@ export const styles = StyleSheet.create({
     width: "100%",
   },
 
+  label: {
+    width: "88%",
+    color: theme.colors.gray[100],
+    fontSize: 13,
+    marginBottom: 5,
+  },
+
   input: {
     backgroundColor: theme.colors.black,
     height: 40,

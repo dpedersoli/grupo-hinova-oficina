@@ -11,10 +11,18 @@ import { StatusModal } from "../../components/SurveyConfirmationModal";
 import { ReferralFormDataProps } from "../../interfaces/referral.interface";
 import { AppNavigatorRoutesProps } from "../../routes/app.routes";
 import { api } from "../../services/api";
+import { handleIsValidCPF } from "../../utils/HandleIsValidCPF";
 import { styles } from "./styles";
 
 const referAFriendSchema = yup.object({
-  NomeAssociado: yup.string().trim().required("Informe o nome do associado."),
+  NomeAssociado: yup
+    .string()
+    .trim()
+    .matches(
+      /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/,
+      "Deve conter apenas letras do alfabeto."
+    )
+    .required("Informe o nome do associado."),
   CodigoAssociacao: yup
     .string()
     .matches(/^[0-9]+$/, "Informe apenas números")
@@ -22,9 +30,8 @@ const referAFriendSchema = yup.object({
     .required("Informe o código da associação."),
   CpfAssociado: yup
     .string()
-    .matches(/^[0-9]+$/, "Informe apenas números")
-    .min(11, "O CPF deve ter pelo menos 11 números. Apenas números.")
-    .required("Informe o CPF."),
+    .required("Informe o CPF.")
+    .test("handleIsValidCPF", "Informe algum CPF válido", handleIsValidCPF),
   EmailAssociado: yup
     .string()
     .trim()
@@ -38,8 +45,19 @@ const referAFriendSchema = yup.object({
   PlacaVeiculoAssociado: yup
     .string()
     .trim()
-    .required("Informe a placa do veículo do associado"),
-  NomeAmigo: yup.string().required("Informe o nome do amigo indicado."),
+    .required("Informe a placa do veículo do associado")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{5,8})/,
+      "Deve conter entre 5 e 8 caracteres, contendo apenas números e letras."
+    ),
+  NomeAmigo: yup
+    .string()
+    .trim()
+    .matches(
+      /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/,
+      "Deve conter apenas letras do alfabeto."
+    )
+    .required("Informe o nome do amigo indicado."),
   TelefoneAmigo: yup
     .string()
     .matches(/^[0-9]+$/, "Informe apenas números")
@@ -140,7 +158,7 @@ export function ReferAFriend() {
   return (
     <>
       <View style={styles.container}>
-        <Header title="Indique um Amigo" />
+        <Header title="Indique um amigo" />
         <ScrollView
           style={styles.formContainer}
           contentContainerStyle={styles.formContainerAlignment}
@@ -150,7 +168,8 @@ export function ReferAFriend() {
             name="NomeAssociado"
             render={({ field: { onChange, value } }) => (
               <Input
-                placeholder="Nome do Associado"
+                label="Nome do associado"
+                placeholder="Nome Sobrenome"
                 onChangeText={onChange}
                 value={value}
                 errorMessage={errors.NomeAssociado?.message}
@@ -163,7 +182,8 @@ export function ReferAFriend() {
               name="CodigoAssociacao"
               render={({ field: { onChange, value } }) => (
                 <Input
-                  placeholder="Codigo da Associação"
+                  label="Codigo da associação"
+                  placeholder="000"
                   onChangeText={onChange}
                   value={value}
                   customStyle={styles.smallInput}
@@ -177,7 +197,8 @@ export function ReferAFriend() {
               name="CpfAssociado"
               render={({ field: { onChange, value } }) => (
                 <Input
-                  placeholder="CPF do Associado"
+                  label="CPF do associado"
+                  placeholder="00000000000"
                   onChangeText={onChange}
                   value={value}
                   customStyle={styles.smallInput}
@@ -193,7 +214,8 @@ export function ReferAFriend() {
             name="EmailAssociado"
             render={({ field: { onChange, value } }) => (
               <Input
-                placeholder="Email do Associado"
+                label="Email do associado"
+                placeholder="email@email.com"
                 onChangeText={onChange}
                 value={value}
                 errorMessage={errors.EmailAssociado?.message}
@@ -206,7 +228,8 @@ export function ReferAFriend() {
               name="TelefoneAssociado"
               render={({ field: { onChange, value } }) => (
                 <Input
-                  placeholder="Telefone do Associado"
+                  label="Telefone do associado"
+                  placeholder="00999999999"
                   onChangeText={onChange}
                   value={value}
                   customStyle={styles.smallInput}
@@ -220,7 +243,8 @@ export function ReferAFriend() {
               name="PlacaVeiculoAssociado"
               render={({ field: { onChange, value } }) => (
                 <Input
-                  placeholder="Placa do Associado"
+                  label="Placa do associado"
+                  placeholder="AAA0A00"
                   onChangeText={onChange}
                   value={value}
                   customStyle={styles.smallInput}
@@ -234,7 +258,8 @@ export function ReferAFriend() {
             name="NomeAmigo"
             render={({ field: { onChange, value } }) => (
               <Input
-                placeholder="Nome do Amigo do Associado"
+                label="Nome do amigo do associado"
+                placeholder="Nome Sobrenome"
                 onChangeText={onChange}
                 value={value}
                 errorMessage={errors.NomeAmigo?.message}
@@ -246,7 +271,8 @@ export function ReferAFriend() {
             name="TelefoneAmigo"
             render={({ field: { onChange, value } }) => (
               <Input
-                placeholder="Telefone do Amigo do Associado"
+                label="Telefone do amigo do associado"
+                placeholder="00999999999"
                 onChangeText={onChange}
                 value={value}
                 keyboardType="numeric"
@@ -259,7 +285,8 @@ export function ReferAFriend() {
             name="EmailAmigo"
             render={({ field: { onChange, value } }) => (
               <Input
-                placeholder="Email do Amigo do Associado"
+                label="Email do amigo do associado"
+                placeholder="email@email.com"
                 onChangeText={onChange}
                 value={value}
                 errorMessage={errors.EmailAmigo?.message}

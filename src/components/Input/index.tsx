@@ -4,17 +4,24 @@ import { theme } from "../../global/styles/theme";
 import { styles } from "./styles";
 
 type Props = TextInputProps & {
+  label: string;
   errorMessage?: string | null;
   customStyle?: any;
 };
 
-export function Input({ errorMessage = null, customStyle, ...rest }: Props) {
+export function Input({
+  label,
+  errorMessage = null,
+  customStyle,
+  ...rest
+}: Props) {
   const [isFocused, setIsFocused] = useState(false);
 
   const isInvalid = errorMessage;
 
   return (
     <View style={{ ...styles.container, ...customStyle }}>
+      <Text style={styles.label}>{label}</Text>
       <TextInput
         style={
           isInvalid
