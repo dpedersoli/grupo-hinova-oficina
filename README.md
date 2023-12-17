@@ -17,7 +17,7 @@ Para iniciar o projeto e visualizá-lo em seu emulador de Android é necessário
 5. Abrir o terminal no diretório do projeto e instalar as suas dependências com o comando: `npm install`
 6. Para iniciar a aplicação, com o Android Studio em execução, dê o comando `expo start` ou `npx expo start` no terminal e siga o restante dos passos de acordo com o seu executador da aplicação.
 
-## Mais sobre mim
+### Mais sobre mim
 
 [Daniel Pedersoli](https://github.com/dpedersoli)
 <br/>
