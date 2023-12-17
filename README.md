@@ -19,5 +19,5 @@ Para iniciar o projeto e visualizá-lo em seu emulador de Android é necessário
 
 ### Mais sobre mim
 
-[Daniel Pedersoli](https://github.com/dpedersoli)
+[Daniel Pedersoli](https://github.com/dpedersoli){:target="\_blank" rel="noopener"}
 <br/>
