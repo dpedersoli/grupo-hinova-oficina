@@ -7,7 +7,7 @@ import { ReferAFriend } from "../screens/ReferAFriend";
 
 type AppRoutes = {
   home: undefined;
-  workshops: undefined; // { exerciseId: string }; -> determino que nessa rota vou receber um objeto com 'exerciseId' do tipo string
+  workshops: undefined;
   refer: undefined;
 };
 

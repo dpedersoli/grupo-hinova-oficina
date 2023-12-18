@@ -17,7 +17,6 @@ import { styles } from "./styles";
 const referAFriendSchema = yup.object({
   NomeAssociado: yup
     .string()
-    .trim()
     .matches(
       /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/,
       "Deve conter apenas letras do alfabeto."
@@ -34,7 +33,6 @@ const referAFriendSchema = yup.object({
     .test("handleIsValidCPF", "Informe algum CPF válido", handleIsValidCPF),
   EmailAssociado: yup
     .string()
-    .trim()
     .required("Informe o e-mail do associado")
     .email("E-mail inválido."),
   TelefoneAssociado: yup
@@ -44,7 +42,6 @@ const referAFriendSchema = yup.object({
     .required("Informe o telefone do associado"),
   PlacaVeiculoAssociado: yup
     .string()
-    .trim()
     .required("Informe a placa do veículo do associado")
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{5,8})/,
@@ -52,7 +49,6 @@ const referAFriendSchema = yup.object({
     ),
   NomeAmigo: yup
     .string()
-    .trim()
     .matches(
       /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/,
       "Deve conter apenas letras do alfabeto."
@@ -65,7 +61,6 @@ const referAFriendSchema = yup.object({
     .required("Informe o telefone do amigo indicado."),
   EmailAmigo: yup
     .string()
-    .trim()
     .required("Informe o e-mail do amigo indicado")
     .email("E-mail inválido."),
 });
