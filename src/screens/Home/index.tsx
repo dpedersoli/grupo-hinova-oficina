@@ -2,10 +2,11 @@ import { useNavigation } from "@react-navigation/native";
 import { Image, View } from "react-native";
 import Logo from "../../assets/png/logo.png";
 import { Button } from "../../components/Button";
+import { AppNavigatorRoutesProps } from "../../routes/app.routes";
 import { styles } from "./styles";
 
 export function Home() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<AppNavigatorRoutesProps>();
 
   function handleGoToWorkshops() {
     navigation.navigate("workshops");

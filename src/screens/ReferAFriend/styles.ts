@@ -11,7 +11,10 @@ export const styles = StyleSheet.create({
   formContainer: {
     marginTop: 20,
     width: "100%",
-    overflow: "hidden",
+  },
+
+  formContainerAlignment: {
+    alignItems: "center",
   },
 
   rowContainer: {

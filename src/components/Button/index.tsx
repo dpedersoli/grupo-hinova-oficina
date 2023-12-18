@@ -9,21 +9,21 @@ import { styles } from "./styles";
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
-  disabled?: boolean;
   isLoading?: boolean;
+  customStyle?: any;
 }
 
 export function Button({
   title,
-  disabled = false,
   isLoading = false,
+  customStyle,
   ...rest
 }: ButtonProps) {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
-      style={disabled ? [styles.button, styles.disabled] : styles.button}
-      disabled={disabled}
+      style={{ ...styles.button, ...customStyle }}
+      disabled={isLoading}
       {...rest}
     >
       {isLoading ? (
