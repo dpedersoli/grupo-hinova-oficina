@@ -44,8 +44,8 @@ const referAFriendSchema = yup.object({
     .string()
     .required("Informe a placa do veículo do associado")
     .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{5,8})/,
-      "Deve conter entre 5 e 8 caracteres, contendo apenas números e letras."
+      /^(?=.*[A-Za-z])(?=.*[0-9])(?=.{5,8})/,
+      "Deve conter entre 5 e 8 caracteres, contendo apenas números e letras maísculas."
     ),
   NomeAmigo: yup
     .string()
@@ -119,10 +119,6 @@ export function ReferAFriend() {
         },
         Remetente: EmailAssociado,
       });
-
-      console.log("response.config.data: ", response.config.data);
-      console.log("response.data: ", response.data);
-      console.log("response.status: ", response.status);
 
       if (response.data.Sucesso !== null) {
         setIsSuccess(true);
@@ -284,6 +280,8 @@ export function ReferAFriend() {
                 placeholder="email@email.com"
                 onChangeText={onChange}
                 value={value}
+                returnKeyType="send"
+                onSubmitEditing={handleSubmit(handleFriendReferral)}
                 errorMessage={errors.EmailAmigo?.message}
               />
             )}

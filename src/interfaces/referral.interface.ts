@@ -5,7 +5,7 @@ export interface ReferralFormDataProps {
   EmailAssociado: string;
   TelefoneAssociado: string;
   PlacaVeiculoAssociado: string;
-  DataCriacao: string;
+  DataCriacao?: string;
   NomeAmigo: string;
   TelefoneAmigo: string;
   EmailAmigo: string;
